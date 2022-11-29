@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, ForeignKey
+from models import FileStorage
 
 
 Base = declarative_base()
@@ -24,7 +25,6 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
-            from models import storage
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -64,4 +64,9 @@ class BaseModel:
 
     def delete(self):
         """delete the current instance from the storage"""
-        
+        print(FileStorage.__objects)
+        """
+        for object in storage.__objects.keys():
+            if object == f"{self.__class__.__name__}.{self.id}":
+                continue
+        """
