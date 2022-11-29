@@ -58,6 +58,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """Deteles the object pass as argument in the object dictionary"""
         if obj:
             key_to_find = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key_to_find in FileStorage.__objects:
