@@ -2,7 +2,7 @@
 """"""
 from os import getenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship
 from models.base_model import BaseModel, Base
 from models.state import State
 from models.city import City
@@ -40,7 +40,7 @@ class DBStorage():
             for obj in self.__session.query(cls).all():
                 dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
         else:
-            list_class = [State, City]
+            list_class = [State, City, User, Place]
             for classes in list_class:
                 for obj in self.__session.query(classes).all():
                     dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
