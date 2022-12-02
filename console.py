@@ -132,9 +132,8 @@ class HBNBCommand(cmd.Cmd):
                 if key == dates[0]:
                     dates[1] = value(dates[1])
             setattr(new_instance, dates[0], dates[1])
-        storage.save()
         print(new_instance.id)
-        storage.save()
+        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """
