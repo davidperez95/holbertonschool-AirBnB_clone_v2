@@ -37,7 +37,6 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         """Reformat command line for advanced command syntax.
-
         Usage: <class name>.<command>([<id> [<*args> or <**kwargs>]])
         (Brackets denote optional fields in usage example.)
         """
@@ -73,8 +72,8 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] == '{' and pline[-1] == '}'\
-                            and type(eval(pline)) == dict:
+                    if pline[0] == '{' and pline[-1] =='}'\
+                            and type(eval(pline)) is dict:
                         _args = pline
                     else:
                         _args = pline.replace(',', '')
@@ -125,12 +124,10 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[arg[0]]()
         for elements in arg[1:]:
             dates = elements.split("=")
-            if dates[1].startswith('"') and dates[1].endswith('"'):
-                dates[1] = dates[1].split('"')
-            if '\\"' in dates[1]:
+            if dates[1][0] == '"':
+                dates[1] = dates[1].strip('"')
                 dates[1] = dates[1].replace('\\"', '"')
-            if '_' in dates[1]:
-                dates[1] = dates[1].replace('_', " ")
+                dates[1] = dates[1].replace('_', ' ')
             for key, value in HBNBCommand.types.items():
                 if key == dates[0]:
                     dates[1] = value(dates[1])
@@ -332,7 +329,6 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
