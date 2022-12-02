@@ -125,9 +125,11 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[arg[0]]()
         for elements in arg[1:]:
             dates = elements.split("=")
-            if dates[1].startswith('"') and dates[1].endswith('"'):    
+            if dates[1].startswith('"') and dates[1].endswith('"'):
                 dates[1] = dates[1].split('"')
+            if '\\"' in dates[1]:
                 dates[1] = dates[1].replace('\\"', '"')
+            if '_' in dates[1]:
                 dates[1] = dates[1].replace('_', " ")
             for key, value in HBNBCommand.types.items():
                 if key == dates[0]:
