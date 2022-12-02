@@ -25,3 +25,12 @@ class Place(BaseModel, Base):
         """"""
         super().__init__(*args, **kwargs)
     
+    @property
+    def reviews(self):
+        """ Return the list of Reviews by Place """
+        from models import storage
+        reviews_by_place = []
+        for rev in storage.all(Review).values():
+            if rev.place_id == self.id:
+                reviews_by_place.append(rev)
+        return reviews_by_place
