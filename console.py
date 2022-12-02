@@ -124,10 +124,15 @@ class HBNBCommand(cmd.Cmd):
             return
         new_instance = HBNBCommand.classes[arg[0]]()
         for elements in arg[1:]:
-            element = elements.split("=")
-            element[1] = element[1].replace("_", " ")
-            element[1] = element[1].strip('"')
-            setattr(new_instance, element[0], element[1])
+            dates = elements.split("=")
+            if dates[1].startswith('"') and dates[1].endswith('"'):    
+                dates[1] = dates[1].split('"')
+                dates[1] = dates[1].replace('\\"', '"')
+                dates[1] = dates[1].replace('_', " ")
+            for key, value in HBNBCommand.types.items():
+                if key == dates[0]:
+                    dates[1] = value(dates[1])
+            setattr(new_instance, dates[0], dates[1])
         storage.save()
         print(new_instance.id)
         storage.save()
