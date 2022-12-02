@@ -35,14 +35,15 @@ class DBStorage():
 
     def all(self, cls=None):
         """"""
-        list_class = cls
-        if cls is None:
-            list_class = [User, State, City, Amenity, Place, Review]
-
-        sc = self.__session().query(list_class).all()
         dict = {}
-        for element in sc:
-            dict[f"{element.__class__.__name__}.{element.id}"] = element
+        if cls:
+            for obj in self.__session.query(cls).all():
+                dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
+        else:
+            list_class = [State, City]
+            for classes in list_class:
+                for obj in self.__session.query(classes).all():
+                    dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
         return dict
 
     def new(self, obj):
