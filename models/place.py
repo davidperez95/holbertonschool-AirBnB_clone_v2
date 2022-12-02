@@ -19,7 +19,8 @@ class Place(BaseModel, Base):
     max_guest = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    
+    reviews = relationship('Review', backref='place',cascade='all, delete')
+
     def __init__(self, *args, **kwargs):
         """"""
         super().__init__(*args, **kwargs)
