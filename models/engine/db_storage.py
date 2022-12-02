@@ -12,7 +12,8 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-class DBStorage:
+class DBStorage():
+    """"""
     __engine = None
     __session = None
 
@@ -32,8 +33,6 @@ class DBStorage:
         if env == 'test':
             Base.metadata.drop_all(self.__engine)
 
-        self.__session = sessionmaker(bind=self.__engine)
-
     def all(self, cls=None):
         """"""
         list_class = cls
@@ -48,19 +47,20 @@ class DBStorage:
 
     def new(self, obj):
         """"""
-        self.__session(bind=self.__engine.connect()).add(obj)
+        self.__session.add(obj)
 
     def save(self):
         """"""
-        self.__session(bind=self.__engine.connect()).commit()
+        self.__session.commit()
 
     def delete(self, obj=None):
         """"""
         if obj is not None:
-            self.__session(bind=self.__engine.connect()).delete(obj)
+            self.__session.delete(obj)
 
     def reload(self):
         """"""
         Base.metadata.create_all(self.__engine)
-        self.__session = sessionmaker(bind=self.__engine)
-        self.__session = scoped_session(self.__session)
+        data_base_session = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(data_base_session)
+        self.__session = Session()
