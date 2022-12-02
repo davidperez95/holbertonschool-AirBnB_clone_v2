@@ -4,6 +4,8 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, ForeignKey, String, Float, Integer
 from sqlalchemy.orm import relationship
 import models
+from models import storage
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -28,7 +30,7 @@ class Place(BaseModel, Base):
     @property
     def reviews(self):
         """ Return the list of Reviews by Place """
-        from models import storage
+        
         reviews_by_place = []
         for rev in storage.all(Review).values():
             if rev.place_id == self.id:
