@@ -14,6 +14,10 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship("City", backref="state")
 
+    def __init__(self, *args, **kwargs):
+        """"""
+        super().__init__(*args, **kwargs)
+
     storage_type = getenv("HBNB_TYPE_STORAGE")
     if storage_type != "db":
         @property
