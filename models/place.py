@@ -7,15 +7,15 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Table
 import models
 
-
-place_amenity = Table("place_amenity", Base.metadata,
+metadata = Base.metadata
+place_amenity = Table("place_amenity", metadata,
                             Column("place_id", String(60),
                             ForeignKey("places.id"),
                             primary_key=True, nullable=False),
                             Column("amenity_id", String(60),
                             ForeignKey("amenities.id"),
-                            primary_key=True, nullable=False))
-
+                            primary_key=True, nullable=False),
+                            extend_existing=True)
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -53,5 +53,5 @@ class Place(BaseModel, Base):
         @amenities.setter
         def amenities(self, value):
             """"""
-            if type(value) == Amenity:
+            if value:
                 self.amenity_ids.append(value.id)
