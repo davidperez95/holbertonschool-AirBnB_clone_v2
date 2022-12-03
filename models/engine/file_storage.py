@@ -62,4 +62,4 @@ class FileStorage:
         if obj:
             key_to_find = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key_to_find in FileStorage.__objects:
-                FileStorage.__objects.pop(key_to_find)
+                del FileStorage.__objects[key_to_find]
