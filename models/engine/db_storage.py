@@ -40,7 +40,7 @@ class DBStorage():
             for obj in self.__session.query(cls).all():
                 dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
         else:
-            list_class = [State, City, User, Place, Review]
+            list_class = [State, City, User, Place, Review, Amenity]
             for classes in list_class:
                 for obj in self.__session.query(classes).all():
                     dict[obj.to_dict()['__class__'] + '.' + obj.id] = obj
