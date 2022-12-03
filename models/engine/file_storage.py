@@ -63,5 +63,3 @@ class FileStorage:
             key_to_find = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key_to_find in self.__objects:
                 del self.__objects[key_to_find]
-        self.save()
-        self.reload()
