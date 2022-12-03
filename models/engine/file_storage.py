@@ -64,3 +64,4 @@ class FileStorage:
             if key_to_find in self.__objects:
                 del self.__objects[key_to_find]
         self.save()
+        self.reload()
