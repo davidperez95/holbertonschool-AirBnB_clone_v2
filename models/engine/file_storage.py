@@ -59,7 +59,7 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deteles the object pass as argument in the object dictionary"""
-        if obj:
+        if obj is not None:
             key_to_find = "{}.{}".format(obj.__class__.__name__, obj.id)
-            if key_to_find in FileStorage.__objects:
-                del FileStorage.__objects[key_to_find]
+            if key_to_find in self.__objects:
+                del self.__objects[key_to_find]
