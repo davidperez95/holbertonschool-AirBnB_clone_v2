@@ -23,9 +23,9 @@ def hbnb():
 
 @app.route('/c/<text>')
 def c(text=None):
-    """This method return the text if exist the param"""
+    """Page of the c is funny"""
     if text is not None:
-        text = text.replace("_", " ")       
+        text = text.replace('_', ' ')
         return f"C {text}"
 
 
