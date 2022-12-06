@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-from flask import Flask
 """
 This module start the conection with flask,
 for conect the web con database
 """
+from flask import Flask
+
 
 app = Flask(__name__)
 
