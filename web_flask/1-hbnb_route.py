@@ -10,13 +10,14 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/hbnb')
-def slash(hbnb=None):
+def slash():
     """This method return the messege of the page /"""
-    if hbnb == None:
-        return "Hello HBNB!"
-    return "HBNB"
+    return "Hello HBNB!"
 
+@app.route('/hbnb')
+def hbnb():
+    """This method return other page"""
+    return "HBNB"
 
 
 if __name__ == '__main__':
