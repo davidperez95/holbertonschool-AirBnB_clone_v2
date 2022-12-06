@@ -27,7 +27,7 @@ def c(text=None):
     """This method return the text if exist the param"""
     if text is not None:
         text = text.replace("_", " ")
-        return f"C {text}"
+        return "C {}".format(text)
     return "C is funny"
 
 
