@@ -21,7 +21,6 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c')
 @app.route('/c/<text>')
 def c(text=None):
     """This method return the text if exist the param"""
