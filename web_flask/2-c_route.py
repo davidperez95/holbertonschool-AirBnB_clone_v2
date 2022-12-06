@@ -21,14 +21,12 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c')
 @app.route('/c/<text>')
 def c(text=None):
     """This method return the text if exist the param"""
     if text is not None:
         text = text.replace("_", " ")
         return "C {}".format(text)
-    return "C is funny"
 
 
 if __name__ == '__main__':
