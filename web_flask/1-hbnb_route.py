@@ -14,6 +14,7 @@ def slash():
     """This method return the messege of the page /"""
     return "Hello HBNB!"
 
+
 @app.route('/hbnb')
 def hbnb():
     """This method return other page"""
