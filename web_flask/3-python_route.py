@@ -30,7 +30,8 @@ def display_text(text):
         new_string = text.replace('_', ' ')
     return 'C {}'.format(new_string)
 
-@app.route('/python/', defaults={'text':'is cool'})
+
+@app.route('/python/', defaults={'text': 'is cool'})
 @app.route('/python/<text>')
 def display_text_default(text):
     """Return "Python" with the default value is cool"""
