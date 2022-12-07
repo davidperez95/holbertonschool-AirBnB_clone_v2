@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-This module start the conection with flask,
-for conect the web con database
+This script display “Hello HBNB!” on '/' and
+“HBNB” on /hbnb route
+"C <text>" on /c/ rourte and the text variable
 """
 from flask import Flask
 
@@ -10,24 +11,24 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def slash():
-    """This method return the messege of the page /"""
+def main_page():
+    """Return “Hello HBNB!” on the console"""
     return "Hello HBNB!"
 
 
 @app.route('/hbnb')
 def hbnb():
-    """This method return other page"""
+    """Return "HBNB" on the console on /hbnb"""
     return "HBNB"
 
 
 @app.route('/c/<text>')
-def c(text=None):
-    """This method return the text if exist the param"""
-    if text is not None:
-        text = text.replace("_", " ")
-        return "C {}".format(text)
-
+def display_text(text):
+    """Return "C" + <text> variable on /c/"""
+    new_string = text
+    if '_' in new_string:
+        new_string = text.replace('_', ' ')
+    return 'C {}'.format(new_string)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

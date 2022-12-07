@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-This module start the conection with flask,
-for conect the web con database
+This script display “Hello HBNB!” on '/' and
+“HBNB” on /hbnb route
 """
 from flask import Flask
 
@@ -10,14 +10,14 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def slash():
-    """This method return the messege of the page /"""
+def main_page():
+    """Return “Hello HBNB!” on the console"""
     return "Hello HBNB!"
 
 
 @app.route('/hbnb')
 def hbnb():
-    """This method return other page"""
+    """Return "HBNB" on the console on /hbnb"""
     return "HBNB"
 
 
