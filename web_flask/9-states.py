@@ -17,7 +17,7 @@ def states(id=None):
     """display the states and cities listed in alphabetical order"""
     states = storage.all(State)
     if id is not None:
-        state_id = 'State.' + state_id
+        state_id = 'State.' + id
     return render_template('9-states.html', states=states, state_id=state_id)
 
 
