@@ -15,9 +15,10 @@
     <H1>State: {{ state.name }}</H1>
     <H3>Cities:</H3>
     <UL>
-        {% for city in states.values()|sort(attribute='name') %}
         {% if state.id == id %}
-        <Li>{{ state.id }}: <B>{{ state.cities }}</B></Li>
+        {% for city in state.cities|sort(attribute='name') %}
+        <Li>{{ city.id }}: <B>{{ city.name }}</B></Li>
+        {% endfor %}
         {% endif %}
     </UL>
     {% else %}

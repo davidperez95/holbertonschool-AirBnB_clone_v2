@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
 Starts a flask web application
+This is a comment
+For the documentation
 """
 from flask import Flask, render_template
 from models import storage
